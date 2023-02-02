@@ -1,7 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useSound } from "use-sound";
 import circleProgress from "./circleProgress.module.css";
 import { formatDate } from "../../assets/utilities/transform_date";
 import useLocalData from "../../hooks/useLocalData";
+import Button from "../../components/Button";
+import confirmSFX from "../../assets/sfx/tuntun.mp3";
 
 export default function Progress() {
 	// Get local data
@@ -116,10 +119,18 @@ export default function Progress() {
 		};
 	});
 
+	const [confirm, setConfirm] = useState(false);
+	const [confirmSound] = useSound(confirmSFX);
+	const deleteData = () => {
+		window.location.hash = "/";
+		window.location.reload();
+		window.localStorage.removeItem("PEACH_TOEIC");
+	};
+
 	return (
-		<section className="px-4 pt-8 w-full">
+		<section className="w-full px-4 pt-8">
 			<header className="mb-8">
-				<h3 className="title text-center">Your progress</h3>
+				<h3 className="text-center title">Your progress</h3>
 			</header>
 			<main>
 				{/* Circle progress */}
@@ -148,7 +159,7 @@ export default function Progress() {
 					</div>
 				</div>
 				<div className="font-medium text-18">
-					<p className="text-primary text-center mb-4 font-semibold ">
+					<p className="mb-4 font-semibold text-center text-primary ">
 						{name}
 					</p>
 
@@ -184,6 +195,22 @@ export default function Progress() {
 							<span className="value" ref={dStreakElement}></span>
 						</p>
 					</div>
+				</div>
+				<div className="mt-8">
+					<Button
+						isPrimary
+						fullWidth
+						onClick={
+							confirm === true
+								? deleteData
+								: () => {
+										confirmSound();
+										setConfirm(true);
+								  }
+						}
+					>
+						{!confirm ? "Delete Data" : "Type again to confirm 💀"}
+					</Button>
 				</div>
 			</main>
 		</section>
