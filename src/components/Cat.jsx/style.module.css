@@ -1,0 +1,9 @@
+.chatBox::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 1rem;
+  border-width: .5rem 1.2rem;
+  border-style: solid;
+  border-color: #e7e7e7 transparent transparent transparent;
+}
