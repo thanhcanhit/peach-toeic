@@ -32,7 +32,7 @@ export default function Cat({ message, time }) {
 				ref={cat}
 				src={catUp}
 				alt="cat"
-				className="w-[200px] ml-auto lg:cursor-pointer"
+				className="w-[150px] ml-auto lg:cursor-pointer"
 			/>
 		</div>
 	);
