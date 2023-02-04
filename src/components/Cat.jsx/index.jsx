@@ -8,7 +8,7 @@ import meowSFX from "./meow.mp3";
 export default function Cat({ message, time }) {
 	const [isDown, setIsDown] = useState();
 	const cat = useRef();
-	const [meowSound] = useSound(meowSFX, { volume: 0.2 });
+	const [meowSound] = useSound(meowSFX, { volume: 0.02 });
 	useEffect(() => {
 		const catSlap = setInterval(() => {
 			setIsDown((prev) => !prev);

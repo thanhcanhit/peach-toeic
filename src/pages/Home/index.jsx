@@ -86,8 +86,8 @@ export default function Home() {
 
 	return (
 		<section className="px-4 pt-8">
-			<h3 className="title mb-4 text-center">Select a content topic</h3>
-			<ul className="grid grid-cols-2 place-items-center gap-4 justify-center bg-white">
+			<h3 className="mb-4 text-center title">Select a content topic</h3>
+			<ul className="grid justify-center grid-cols-2 gap-4 bg-white place-items-center">
 				{topicList.map((item) => (
 					<li
 						key={item.id}

@@ -71,7 +71,7 @@ export default function UserForm({ message, title }) {
 			<div className="absolute inset-0 bg-black opacity-95"></div>
 			<section className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-white rounded-md w-[80%] overflow-hidden">
 				{step < welcome.length && (
-					<article>
+					<article className="cursor-pointer">
 						<header className="p-4 text-xl font-semibold text-center bg-blue-200 border-b-2 text-dark-blue">
 							<div className={styles.typewriter}>
 								<h1>Chào mừng bạn 👋</h1>
@@ -80,8 +80,8 @@ export default function UserForm({ message, title }) {
 						<main className="p-4 leading-6 bg-blue-50">
 							<p>{welcome[step]}</p>
 						</main>
-						<footer className="pb-2 text-center opacity-50 bg-blue-50 text-12">
-							[{step + 1}/{welcome.length}]{" "}
+						<footer className="py-1 text-center opacity-50 bg-blue-50 text-12">
+							[{step + 1}/{welcome.length}]
 						</footer>
 					</article>
 				)}

@@ -43,7 +43,7 @@ export default function Pet() {
 	useLayoutEffect(() => {
 		const changeMessage = setInterval(() => {
 			randomMessage();
-		}, 10000);
+		}, 20000);
 
 		return () => clearInterval(changeMessage);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
