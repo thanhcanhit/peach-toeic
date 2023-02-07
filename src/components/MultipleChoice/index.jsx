@@ -165,7 +165,7 @@ export default function MultipleChoice({
 					{/* Top block */}
 					<header className="mb-4">
 						<Timer percent={(time / timeSetting) * 100} />
-						<div className="flex justify-between text-15 text-primary font-semibold mt-2">
+						<div className="flex justify-between mt-2 font-semibold text-15 text-primary">
 							<p>
 								Score:
 								<span
@@ -185,14 +185,14 @@ export default function MultipleChoice({
 						</div>
 					</header>
 					{/* Main block */}
-					<main className="grid grid-rows-2 grid-cols-1 justify-between h-full w-full">
+					<main className="grid justify-between w-full h-full grid-cols-1 grid-rows-2">
 						{/* Question */}
 						<div>
 							<QuestionCard item={question} />
 						</div>
 
 						{/* 4 Answer */}
-						<div className="mt-auto w-full">
+						<div className="w-full mt-auto">
 							<ul className="grid grid-cols-1 gap-2">
 								{questionList.map((item, index) => (
 									<AnswerButton
@@ -208,10 +208,10 @@ export default function MultipleChoice({
 					</main>
 				</div>
 			) : (
-				<div className="fixed lg:absolute inset-0">
+				<div className="fixed inset-0 lg:absolute">
 					{/* Show result */}
 					<div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-[80%] bg-white rounded z-10">
-						<h3 className="title text-center border-b p-4 mb-4">
+						<h3 className="p-4 mb-4 text-center border-b title">
 							Congratulation🎉
 						</h3>
 						<div className="px-4 pb-4">
@@ -234,7 +234,7 @@ export default function MultipleChoice({
 							<div className="opacity-75">
 								<p>
 									This time you made
-									<span className="text-blue-500 mx-1">
+									<span className="mx-1 text-blue-500">
 										{wrongCounter}
 									</span>
 									mistakes
@@ -253,14 +253,14 @@ export default function MultipleChoice({
 								</p>
 							</div>
 							<div className="mt-4">
-								<Button isPrimary>
-									<Link to="/practice">Back</Link>
-								</Button>
+								<Link to="/practice">
+									<Button isPrimary fullWidth>Back</Button>
+								</Link>
 							</div>
 						</div>
 					</div>
 					{/* Black Layer */}
-					<div className="fixed lg:absolute inset-0 bg-black opacity-50"></div>
+					<div className="fixed inset-0 bg-black opacity-50 lg:absolute"></div>
 				</div>
 			)}
 		</div>

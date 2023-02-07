@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useSound } from "use-sound";
 
 // Icons
-import { HiAcademicCap, HiPlay } from "react-icons/hi2";
 import { HiClipboardList, HiFlag } from "react-icons/hi";
+import { HiAcademicCap, HiPlay } from "react-icons/hi2";
 
 // Sound Effects
 import bubbleSoundSrc from "../../../../assets/sfx/bubble-pop.mp3";
@@ -44,8 +44,10 @@ export default function Sidebar() {
 	// Current tab id
 	const [activeTab, setActiveTab] = useState(() => {
 		// Analysis path name to get current active tab
-		const currentPath = window.location.pathname;
-		const active = sidebarList.find((item) => item.path === currentPath);
+		const currentPath = window.location.hash;
+		const active = sidebarList.find(
+			(item) => `#${item.path}` === currentPath
+		);
 
 		// If one item has path = currentPath return this item
 		if (active) return active.id;
