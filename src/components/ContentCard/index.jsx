@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSound } from "use-sound";
 import { twMerge } from "tailwind-merge";
 import { HiVolumeUp } from "react-icons/hi";
@@ -17,8 +17,11 @@ import {
 import changeSound from "../../assets/sfx/notice.mp3";
 
 function ContentCard({ item }) {
+	
 	// State change beetween example view and meaning view
 	const [isExample, setExample] = useState(false);
+	
+	useLayoutEffect(() => {setExample(false)}, [item]);
 
 	// This state for short screen device to responsive views
 	const [isShort, setShort] = useState(() => {
