@@ -68,7 +68,7 @@ export default function Home() {
 	// Previous
 	const previousItemRef = useRef();
 	const [previous, setPrevious] = usePrevious();
-	const [scroll, setScroll] = useState(null);
+	const [scroll, setScroll] = useState("inside");
 	useEffect(() => {
 		const whereScrollTo = () => {
 			const windowTop = Math.floor(window.scrollY);
