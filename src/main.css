@@ -63,7 +63,7 @@
   }
 
   .flex-center {
-    @apply flex justify-center items-center;
+    @apply flex items-center justify-center;
   }
 }
 
@@ -77,10 +77,10 @@
   }
 
   .contact-library-button {
-    @apply flex items-center justify-center gap-2 border py-4 px-6 text-[1rem] rounded-lg h-[60px] w-[120px] active:bg-blue-100 transition-colors duration-300 active:text-white;
+    @apply flex items-center justify-center gap-4 border py-4 px-4 text-[1rem] rounded-lg h-[60px] w-[140px] active:bg-blue-100 transition-colors duration-300 active:text-white;
   }
 
   .value {
-    @apply text-primary font-normal ml-1;
+    @apply ml-1 font-normal text-primary;
   }
 }

@@ -30,9 +30,9 @@ module.exports = {
 					"100%": { transform: "translateY(0%)", opacity: 1 },
 				},
 				"cat-jump": {
-					"0%": { transform: "rotate(-14deg)"},
-					"50%": { transform: "translateY(-40%) rotate(0)"},
-					"100%": { transform: "rotate(-14deg)"}
+					"0%": { transform: "rotate(-8deg)"},
+					"50%": { transform: "translateY(-20%) rotate(0)"},
+					"100%": { transform: "rotate(-8deg)"}
 				},
 				"fade-in": {
 					"0%": {opacity: 0},
@@ -41,7 +41,7 @@ module.exports = {
 			},
 			animation: {
 				"sidebar-text": "sidebar-text ease .3s",
-				"cat-jump": "cat-jump ease-in-out 1.5s infinite",
+				"cat-jump": "cat-jump ease-in-out 2s infinite",
 				"fade-in": "fade-in ease .3s"
 			},
 		},

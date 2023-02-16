@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSound } from "use-sound";
-import styles from "./UserForm.module.css";
 import Button from "../Button";
 import useLocalData from "../../hooks/useLocalData";
 import Cat from "../Cat.jsx";
@@ -9,9 +8,9 @@ import bubbleSoundSrc from "../../assets/sfx/bubble-pop.mp3";
 
 const welcome = [
 	"Chào mừng bạn đến với 🍑 Peach Toeic!",
-	"Ứng dụng được tạo ra nhằm giúp các bạn học và ôn tập những từ vựng TOEIC dễ dàng hơn 😁",
-	"Gồm 600 từ vựng quan trọng nhất thuộc 50 chủ đề được lựa chọn kĩ lưỡng từ những sách và tài liệu nổi tiếng nhất về TOEIC 😲",
-	"Nếu có góp ý, đóng góp,... có thể liên hệ với mình bằng bất kỳ hình thức nào nhe 🫡",
+	"Ứng dụng bao gồm 600 từ vựng TOEIC thiết yếu nhất được chọn lọc từ các tài liệu uy tín.",
+	"Ở ngoài kia có rất nhiều phần mềm khác nhưng: \"Phần mềm tốt thì không miễn phí, phần mềm miễn phí thường thì lại không tốt...\"",
+	"Hy vọng phần mềm của mình có thể giúp bạn học các từ vựng TOEIC hiệu quả hơn 🥰",
 	"Chúc bạn thành công! 🍀",
 ];
 
@@ -73,12 +72,12 @@ export default function UserForm({ message, title }) {
 				{step < welcome.length && (
 					<article className="cursor-pointer">
 						<header className="p-4 text-xl font-semibold text-center bg-blue-200 border-b-2 text-dark-blue">
-							<div className={styles.typewriter}>
+							<div>
 								<h1>Chào mừng bạn 👋</h1>
 							</div>
 						</header>
 						<main className="p-4 leading-6 bg-blue-50">
-							<p>{welcome[step]}</p>
+							<span>{welcome[step]}</span>
 						</main>
 						<footer className="py-1 text-center opacity-50 bg-blue-50 text-12">
 							[{step + 1}/{welcome.length}]

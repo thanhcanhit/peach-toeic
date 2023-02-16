@@ -283,10 +283,12 @@ export default function Learn({ topic }) {
 						className="contact-library-button"
 						onClick={() => addToLibraryList(currentItem.id)}
 					>
-						<span className="text-2xl text-green-400">
+						<span className="text-xl text-green-400">
 							<BsFillBookmarkPlusFill />
 						</span>
-						Add
+						<span className="text-center text-12">
+							Add to Library
+						</span>
 					</button>
 				) : (
 					/* REMOVE TO LIB BUTTON */
@@ -297,10 +299,12 @@ export default function Learn({ topic }) {
 							removeFromLibraryList(currentItem.id);
 						}}
 					>
-						<span className="text-2xl text-red-400">
+						<span className="text-xl text-red-400">
 							<BsFillBookmarkDashFill />
 						</span>
-						Remove
+						<span className="text-center text-12">
+							Remove from Library
+						</span>
 					</button>
 				)}
 				<button
