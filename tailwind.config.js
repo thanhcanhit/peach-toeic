@@ -33,11 +33,16 @@ module.exports = {
 					"0%": { transform: "rotate(-14deg)"},
 					"50%": { transform: "translateY(-40%) rotate(0)"},
 					"100%": { transform: "rotate(-14deg)"}
+				},
+				"fade-in": {
+					"0%": {opacity: 0},
+					"100%": {opacity: 1}
 				}
 			},
 			animation: {
 				"sidebar-text": "sidebar-text ease .3s",
 				"cat-jump": "cat-jump ease-in-out 1.5s infinite",
+				"fade-in": "fade-in ease .3s"
 			},
 		},
 	},

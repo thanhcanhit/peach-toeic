@@ -18,7 +18,7 @@ import changeSound from "../../assets/sfx/notice.mp3";
 
 function ContentCard({ item }) {
 	
-	// State change beetween example view and meaning view
+	// State change between example view and meaning view
 	const [isExample, setExample] = useState(false);
 	
 	useLayoutEffect(() => {setExample(false)}, [item]);

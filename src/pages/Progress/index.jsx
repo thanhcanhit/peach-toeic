@@ -97,7 +97,7 @@ export default function Progress() {
 				clearInterval(hScoreAnimate);
 				hScoreElement.current.textContent = highScore.score;
 			}
-		}, speed / 5);
+		}, speed / 15);
 
 		// Day Streak
 		const dStreakAnimate = setInterval(() => {

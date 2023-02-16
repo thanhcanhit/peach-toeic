@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSound } from "use-sound";
 
@@ -12,19 +12,19 @@ import TopicItem from "../../components/TopicItem";
 import { TopicContext } from "../../context/TopicContext";
 
 // Custom hooks
+import useCompleteTopic from "../../hooks/useCompleteTopic";
 import useLearned from "./../../hooks/useLearned";
 import usePrevious from "./../../hooks/usePrevious";
-import useCompleteTopic from "../../hooks/useCompleteTopic";
 
 // Icons
-import { IoLocationSharp } from "react-icons/io5";
+import { IoChevronDownOutline, IoChevronUp } from "react-icons/io5";
 
 // Sound effects
 import wipeSFX from "../../assets/sfx/wipe.mp3";
 
 export default function Home() {
 	// Sound effects
-	const [wipeSound] = useSound(wipeSFX, {volume: .5});
+	const [wipeSound] = useSound(wipeSFX, { volume: 0.5 });
 
 	// Get topic data from context
 	const topicData = useContext(TopicContext);
@@ -54,7 +54,8 @@ export default function Home() {
 			}
 
 			// Add to complete list
-			if (complete && !completeTopicList.includes(item.id)) completeTopicList.push(item.id);
+			if (complete && !completeTopicList.includes(item.id))
+				completeTopicList.push(item.id);
 
 			return { ...item, complete };
 		});
@@ -62,16 +63,35 @@ export default function Home() {
 
 	useEffect(() => {
 		setCompleteTopic(completeTopicList);
-	}, [completeTopicList, setCompleteTopic])
+	}, [completeTopicList, setCompleteTopic]);
 
 	// Previous
-	const [getPrevious, setPrevious] = usePrevious();
-	const previousView = getPrevious();
+	const previousItemRef = useRef();
+	const [previous, setPrevious] = usePrevious();
+	const [scroll, setScroll] = useState(null);
+	useEffect(() => {
+		const whereScrollTo = () => {
+			const windowTop = Math.floor(window.scrollY);
+			const windowHeight = window.innerHeight;
+			const itemTop = previousItemRef.current?.offsetTop;
+			const itemHeight = previousItemRef.current?.offsetHeight;
+
+			if (itemTop < windowTop) setScroll("top");
+			else if (itemTop + itemHeight < windowTop + windowHeight)
+				setScroll("inside");
+			else if (itemTop > windowTop + windowHeight) setScroll("bottom");
+		};
+
+		window.addEventListener("scroll", whereScrollTo);
+
+		return () => window.removeEventListener("scroll", whereScrollTo);
+	}, [previous]);
+
+	const previousView = previous();
 
 	// Function scroll to previous item
 	const scrollToPrevious = (smooth) => {
-		const previousItem = document.querySelector(".previous");
-		previousItem.scrollIntoView({
+		previousItemRef.current.scrollIntoView({
 			block: "center",
 			inline: "nearest",
 			behavior: smooth ? "smooth" : "auto",
@@ -102,20 +122,31 @@ export default function Home() {
 								topic={item}
 								isCompleted={item.complete}
 								isPrevious={item.id === previousView}
+								ref={
+									item.id === previousView
+										? previousItemRef
+										: null
+								}
 							/>
 						</Link>
 					</li>
 				))}
 			</ul>
-			<button
-				onClick={() => {
-					wipeSound();
-					scrollToPrevious(true);
-				}}
-				className="fixed z-[49] right-2 lg:right-[40%] bottom-[4.5rem] p-2 text-2xl text-white bg-primary active:bg-neutral-500 rounded-full shadow"
-			>
-				<IoLocationSharp />
-			</button>
+			{scroll !== "inside" && (
+				<button
+					onClick={() => {
+						wipeSound();
+						scrollToPrevious(true);
+					}}
+					className="fixed z-[49] border shadow-lg right-2 lg:right-[40%] bottom-[4.5rem] p-2 text-2xl text-white bg-primary active:bg-neutral-500 rounded-full animate-fade-in"
+				>
+					<span className="absolute top-[50%] translate-y-[-50%] text-black right-full mr-2 text-14 bg-white px-4 rounded-full border whitespace-nowrap">
+						Back to the previous position
+					</span>
+					{(scroll === "top" && <IoChevronUp />) ||
+						(scroll === "bottom" && <IoChevronDownOutline />)}
+				</button>
+			)}
 		</section>
 	);
 }

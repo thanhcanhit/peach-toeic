@@ -227,19 +227,19 @@ export default function Learn({ topic }) {
 	return (
 		<div className="flex justify-center items-center h-[100vh] lg:max-w-sm lg:relative">
 			{/* Top side */}
-			<header className="absolute z-10 top-2 left-4 right-4 py-2 flex items-center justify-between">
+			<header className="absolute z-10 flex items-center justify-between py-2 top-2 left-4 right-4">
 				<Link to="/" onClick={wipeSound}>
 					<CircleButton>
 						<HiReply />
 					</CircleButton>
 				</Link>
 
-				<div className="text-center translate-x-4 font-bold">
+				<div className="font-bold text-center translate-x-4">
 					{`${current + 1}/12`}
 				</div>
 
 				<div
-					className="rounded-l-full text-32 text-white bg-primary active:bg-blue-300 py-2 pr-2 pl-6 shadow translate-x-4 lg:cursor-pointer"
+					className="py-2 pl-6 pr-2 text-white translate-x-4 rounded-l-full shadow text-32 bg-primary active:bg-blue-300 lg:cursor-pointer"
 					onClick={() => {
 						clickSound();
 						showSidebar.current();
@@ -247,11 +247,18 @@ export default function Learn({ topic }) {
 				>
 					<HiMenu />
 				</div>
+				{/* Play button */}
+				<button
+					className="absolute left-[50%] -translate-x-[50%] top-[3.3rem] px-4 py-2 rounded-full bg-primary text-white font-semibold text-12 shadow"
+					onClick={tuntunSound}
+				>
+					<Link to="/game-topic">Practice this topic</Link>
+				</button>
 			</header>
 			{/* Main */}
 			<main
 				ref={card}
-				className="will-change-transform transition-all duration-200"
+				className="transition-all duration-200 will-change-transform"
 			>
 				<ContentCard item={currentItem} />
 			</main>
@@ -307,14 +314,6 @@ export default function Learn({ topic }) {
 				>
 					<HiOutlineChevronRight />
 				</button>
-
-				{/* Play button */}
-				<button
-					className="fixed left-[50%] -translate-x-[50%] top-[4.5rem] px-4 py-2 rounded-full bg-primary text-white font-semibold text-12 shadow"
-					onClick={tuntunSound}
-				>
-					<Link to="/game-topic">Practice this topic</Link>
-				</button>
 			</nav>
 
 			{/* Side bar */}
@@ -325,8 +324,8 @@ export default function Learn({ topic }) {
 					(sidebar ? "" : " translate-x-full")
 				}
 			>
-				<div className="absolute inset-0 bottom-auto flex justify-between items-center py-4 px-2 bg-primary text-white rounded-br-3xl overflow-auto">
-					<h3 className="flex-1 text-20 overflow-hidden one-line">
+				<div className="absolute inset-0 bottom-auto flex items-center justify-between px-2 py-4 overflow-auto text-white bg-primary rounded-br-3xl">
+					<h3 className="flex-1 overflow-hidden text-20 one-line">
 						{capitalize(topic.name)}
 					</h3>
 					<button
@@ -334,7 +333,7 @@ export default function Learn({ topic }) {
 							wipeSound();
 							hideSidebar.current();
 						}}
-						className="p-1 bg-light-gray text-black rounded-lg mr-2 mb-1 active:bg-blue-300"
+						className="p-1 mb-1 mr-2 text-black rounded-lg bg-light-gray active:bg-blue-300"
 					>
 						<HiX />
 					</button>
@@ -362,12 +361,12 @@ export default function Learn({ topic }) {
 								{`${item.id + 1}. ${item.name}`}
 								<span className="flex items-center">
 									{(library.includes(item.id) && (
-										<span className=" text-yellow-400">
+										<span className="text-yellow-400 ">
 											<HiBookmark />
 										</span>
 									)) ||
 										(learned.includes(item.id) && (
-											<span className="text-20 text-green-400">
+											<span className="text-green-400 text-20">
 												<BsCheck />
 											</span>
 										))}
@@ -379,7 +378,7 @@ export default function Learn({ topic }) {
 			</aside>
 			{sidebar && (
 				<div
-					className="fixed lg:absolute z-20 inset-0 bg-slate-900 opacity-70 transition-all"
+					className="fixed inset-0 z-20 transition-all lg:absolute bg-slate-900 opacity-70"
 					onClick={() => {
 						wipeSound();
 						hideSidebar.current();
