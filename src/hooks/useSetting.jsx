@@ -3,6 +3,10 @@ export default function useSetting() {
 
 	const get = () => {
 		const localData = JSON.parse(window.localStorage.getItem(key)) || null;
+		if (!localData.setting) {
+			localData.setting = { quantity: 5, time: 10, type: 0 };
+			window.localStorage.setItem(key, JSON.stringify(localData));
+		}
 		return localData?.setting;
 	};
 

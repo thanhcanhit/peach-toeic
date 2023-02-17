@@ -14,6 +14,7 @@ import DetailCard from "../../components/DetailCard";
 // Sounds
 import bubblePopSFX from "../../assets/sfx/bubble-pop.mp3";
 import paperSFX from "../../assets/sfx/page-flip.mp3";
+import { NotificationContext } from "../../App";
 
 export default function Library() {
 	// Sounds
@@ -43,14 +44,17 @@ export default function Library() {
 		setLocalLibraryData(library);
 	}, [library, setLocalLibraryData]);
 
+	// Notification 
+	const addNotification = useContext(NotificationContext);
+
 	return (
-		<div className="pt-8 px-4 pb-24">
-			<h2 className="title mb-4 text-center">Saved Vocabulary</h2>
+		<div className="px-4 pt-8 pb-24">
+			<h2 className="mb-4 text-center title">Saved Vocabulary</h2>
 			<ul className="grid grid-cols-1 gap-2">
 				{library.map((id, index) => (
 					<li
 						key={id}
-						className="p-2 rounded odd:bg-indigo-100 even:bg-teal-100 active:bg-blue-100 transition-colors duration-300 border"
+						className="p-2 transition-colors duration-300 border rounded odd:bg-indigo-100 even:bg-teal-100 active:bg-blue-100"
 						onClick={() => {
 							clickSound();
 							setActiveIndex(index);
@@ -61,6 +65,7 @@ export default function Library() {
 							name={vocaList[id].name}
 							removeItem={() => {
 								removeItem(id);
+								addNotification("info", `Removed ${vocaList[id].name} from Library`);
 							}}
 							activeIndex={activeIndex}
 						>
@@ -69,7 +74,7 @@ export default function Library() {
 					</li>
 				))}
 				{library.length === 0 && (
-					<div className="text-center opacity-60 mt-4">
+					<div className="mt-4 text-center opacity-60">
 						<p>You have not saved any words yet.</p>
 						<p className="italic text-14">Try adding a few words to query them faster!</p>
 					</div>

@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useSound } from "use-sound";
 import circleProgress from "./circleProgress.module.css";
 import { formatDate } from "../../assets/utilities/transform_date";
 import useLocalData from "../../hooks/useLocalData";
 import Button from "../../components/Button";
 import confirmSFX from "../../assets/sfx/tuntun.mp3";
+import { NotificationContext } from "../../App";
 
 export default function Progress() {
 	// Get local data
@@ -127,6 +128,9 @@ export default function Progress() {
 		window.localStorage.removeItem("PEACH_TOEIC");
 	};
 
+	// Notification 
+	const addNotification = useContext(NotificationContext);
+
 	return (
 		<section className="w-full px-4 pt-8">
 			<header className="mb-8">
@@ -206,6 +210,7 @@ export default function Progress() {
 								: () => {
 										confirmSound();
 										setConfirm(true);
+										addNotification('warn', "Are you sure you want to delete your progress?")
 								  }
 						}
 					>

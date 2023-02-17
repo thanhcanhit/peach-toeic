@@ -13,15 +13,15 @@ module.exports = {
 				15: "0.9375rem",
 				18: "1.125rem ",
 				20: "1.25rem",
-				32: "2rem"
+				32: "2rem",
 			},
 			fontFamily: {
-				rowdies: ['Rowdies', 'cursive']
+				rowdies: ["Rowdies", "cursive"],
 			},
 			colors: {
 				primary: "#7A9CC6",
-        "dark-blue": "#646E78",
-        "light-gray": "#EEEEEE",
+				"dark-blue": "#646E78",
+				"light-gray": "#EEEEEE",
 				black: "#424242",
 			},
 			keyframes: {
@@ -30,19 +30,24 @@ module.exports = {
 					"100%": { transform: "translateY(0%)", opacity: 1 },
 				},
 				"cat-jump": {
-					"0%": { transform: "rotate(-8deg)"},
-					"50%": { transform: "translateY(-20%) rotate(0)"},
-					"100%": { transform: "rotate(-8deg)"}
+					"0%": { transform: "rotate(-8deg)" },
+					"50%": { transform: "translateY(-20%) rotate(0)" },
+					"100%": { transform: "rotate(-8deg)" },
 				},
 				"fade-in": {
-					"0%": {opacity: 0},
-					"100%": {opacity: 1}
-				}
+					"0%": { opacity: 0 },
+					"100%": { opacity: 1 },
+				},
+				"slide-in-top": {
+					"0%": { transform: "translateY(-50px)", opacity: 0 },
+					"100%": { transform: "translateY(0)", opacity: 1 },
+				},
 			},
 			animation: {
 				"sidebar-text": "sidebar-text ease .3s",
 				"cat-jump": "cat-jump ease-in-out 2s infinite",
-				"fade-in": "fade-in ease .3s"
+				"fade-in": "fade-in ease .3s",
+				"slide-in-top": "slide-in-top ease .5s",
 			},
 		},
 	},

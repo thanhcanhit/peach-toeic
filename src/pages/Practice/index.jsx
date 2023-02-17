@@ -103,20 +103,9 @@ export default function Practice() {
 	// Use local setting hooks
 	const [getLocalSetting, setLocalSetting] = useSetting();
 	const [setting, setSetting] = React.useState(() => {
-		let settingValue = getLocalSetting(); 
-
-		// if don't have local settings, use default at index 0 value
-		if (!settingValue) {
-			settingValue = {};
-
-			settingData.forEach((item) => {
-				settingValue[item.name] = item.setting[0].value;
-			});
-		}
+		let settingValue = getLocalSetting();
 		return settingValue;
-
 	});
-
 
 	// This side effect is used to update the local setting when setting state changes
 	React.useEffect(() => {
@@ -129,27 +118,27 @@ export default function Practice() {
 	return (
 		<section className="px-4">
 			{/* Setting */}
-			<div className="pt-8 flex flex-col">
-				<h2 className="title text-center mb-4">Setting</h2>
+			<div className="flex flex-col pt-8">
+				<h2 className="mb-4 text-center title">Setting</h2>
 				{/* Select section */}
-				<form className=" flex flex-col gap-6 mb-6">
+				<form className="flex flex-col gap-6 mb-6 ">
 					{settingData.map((item, index) => (
 						<div key={index}>
 							<h4 className="inline-block mb-2 font-semibold text-primary">
 								{item.title}:
 							</h4>
 							{/* Block contain radio button option */}
-							<div className="flex flex-wrap gap-x-6 gap-y-2 bg-s-white border p-2 rounded-lg shadow-sm">
+							<div className="flex flex-wrap p-2 border rounded-lg shadow-sm gap-x-6 gap-y-2 bg-s-white">
 								{item.setting.map((option) => (
 									<div
-										className="flex justify-between items-center min-w-fit"
+										className="flex items-center justify-between min-w-fit"
 										key={option.id}
 									>
 										<div className="flex items-center gap-1">
 											<input
 												type="radio"
 												name={item.name}
-												className="mr-1 w-5 h-5 accent-black lg:cursor-pointer"
+												className="w-5 h-5 mr-1 accent-black lg:cursor-pointer"
 												id={`${item.name}_${option.id}`}
 												value={option.value}
 												checked={

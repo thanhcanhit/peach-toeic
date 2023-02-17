@@ -37,6 +37,7 @@ import {
 	BsCheck,
 	BsFillBookmarkDashFill,
 } from "react-icons/bs";
+import { NotificationContext } from "../../App";
 
 export default function Learn({ topic }) {
 	// Get vocabulary context
@@ -224,6 +225,9 @@ export default function Learn({ topic }) {
 		};
 	}, [next, paperSound, prev]);
 
+	// Notification
+	const addNotification = useContext(NotificationContext);
+
 	return (
 		<div className="flex justify-center items-center h-[100vh] lg:max-w-sm lg:relative">
 			{/* Top side */}
@@ -281,7 +285,7 @@ export default function Learn({ topic }) {
 					/* ADD TO LIB BUTTON */
 					<button
 						className="contact-library-button"
-						onClick={() => addToLibraryList(currentItem.id)}
+						onClick={() => {addToLibraryList(currentItem.id); addNotification("success", `Added "${currentItem.name}" to the Library`)}}
 					>
 						<span className="text-xl text-green-400">
 							<BsFillBookmarkPlusFill />
@@ -297,6 +301,7 @@ export default function Learn({ topic }) {
 						onClick={() => {
 							tuntunSound();
 							removeFromLibraryList(currentItem.id);
+							addNotification("info", `Removed "${currentItem.name}" from the Library`)
 						}}
 					>
 						<span className="text-xl text-red-400">
