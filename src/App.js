@@ -44,7 +44,7 @@ function App() {
 
 	const addToQueue = useCallback((type, message) => {
 		setQueue((prev) => {
-			return prev.length >= 3
+			return prev.length >= 1
 				? [...prev.slice(1), { type: type, message: message }]
 				: [...prev, { type: type, message: message }];
 		});
