@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useState,
+} from "react";
 import {
 	IoInformationCircle,
 	IoAlertCircleSharp,
@@ -58,48 +63,54 @@ export default React.memo(function NotificationItem({
 	message,
 	popFromQueue,
 }) {
-	const thisItem = useRef();
+	// const thisItem = useRef();
 	const [notificationSound] = useSound(notificationSFX, { volume: 0.6 });
-	const [hide, setHide] = useState(false);
+	// const [hide, setHide] = useState(false);
 
-	const handleHide = useCallback(() => {
-		let opacity = 1;
-		let y = 0;
-		const fadeStyle = setInterval(() => {
-			try {
-				thisItem.current.style.opacity = opacity;
-				thisItem.current.style.transform = `translateY(-${y}px)`;
-				y += 1.5;
-				opacity -= 0.01;
-				if (thisItem.current.style.opacity <= 0) {
-					popFromQueue();
-					clearInterval(fadeStyle);
-				}
-			} catch (e) {
-				popFromQueue();
-				clearInterval(fadeStyle);
-			}
-		}, 1);
-	}, [popFromQueue, thisItem]);
+	// const handleHide = useCallback(() => {
+	// 	let opacity = 1;
+	// 	const fadeStyle = setInterval(() => {
+	// 		try {
+	// 			thisItem.current.style.opacity = opacity;
+	// 			opacity -= 0.01;
+	// 			if (thisItem.current.style.opacity <= 0) {
+	// 				popFromQueue();
+	// 				clearInterval(fadeStyle);
+	// 			}
+	// 		} catch (e) {
+	// 			popFromQueue();
+	// 			clearInterval(fadeStyle);
+	// 		}
+	// 	}, 1);
+	// }, [popFromQueue, thisItem]);
+
+	// useEffect(() => {
+	// 	notificationSound();
+	// 	let timeRest = 2000;
+	// 	const timeInterval = setInterval(() => {
+	// 		timeRest -= 100;
+
+	// 		if (timeRest <= 0) {
+	// 			clearInterval(timeInterval);
+	// 			setHide(true);
+	// 		}
+	// 	}, 100);
+
+	// 	return () => clearInterval(timeInterval);
+	// }, [notificationSound, type, message]);
+
+	// useLayoutEffect(() => {
+	// 	if (hide) handleHide();
+	// }, [handleHide, hide]);
 
 	useEffect(() => {
 		notificationSound();
-		let timeRest = 2000;
-		const timeInterval = setInterval(() => {
-			timeRest -= 100;
+		const autoHide = setTimeout(() => {
+			popFromQueue();
+		}, 2000)
 
-			if (timeRest <= 0) {
-				clearInterval(timeInterval);
-				setHide(true);
-			}
-		}, 100);
-
-		return () => clearInterval(timeInterval);
-	}, [notificationSound, type, message]);
-
-	useEffect(() => {
-		if (hide) handleHide();
-	}, [handleHide, hide]);
+		return () => clearTimeout(autoHide); 
+	}, [notificationSound, type, message, popFromQueue]);
 
 	const itemType = useMemo(
 		() => notificationType.find((item) => item.type === type),
@@ -111,7 +122,7 @@ export default React.memo(function NotificationItem({
 			className="relative flex gap-4 px-4 py-2 mx-4 my-2 bg-white border-2 border-l-8 rounded-lg shadow-lg opacity-100 animate-slide-in-top"
 			style={{ borderLeftColor: itemType.borderColor }}
 			onClick={popFromQueue}
-			ref={thisItem}
+			// ref={thisItem}
 		>
 			<div className="flex items-center justify-center text-3xl text-blue-500">
 				{itemType.icon}

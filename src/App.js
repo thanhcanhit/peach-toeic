@@ -44,9 +44,10 @@ function App() {
 
 	const addToQueue = useCallback((type, message) => {
 		setQueue((prev) => {
-			return prev.length >= 1
-				? [...prev.slice(1), { type: type, message: message }]
-				: [...prev, { type: type, message: message }];
+			// return prev.length >= 3
+			// 	? [...prev.slice(1), { type: type, message: message }]
+			// :	
+			return [...prev, { type: type, message: message }];
 		});
 	}, []);
 
@@ -62,7 +63,7 @@ function App() {
 			const gap = subtractDay(Date.now(), localData.lastTimeLogin);
 			if (gap === 1) {
 				localData.dayStreak++;
-				addToQueue("info", `${localData.dayStreak} day streak 🔥`);
+				// addToQueue("info", `${localData.dayStreak} day streak 🔥`);
 			} else if (gap === 0);
 			else localData.dayStreak = 1;
 
@@ -77,7 +78,7 @@ function App() {
 	return (
 		<HashRouter>
 			<NotificationContext.Provider value={addToQueue}>
-				<Loading time={2500} />
+				{/* <Loading time={2500} /> */}
 				{localData.name === null && (
 					<UserForm
 						message="When we first met, what's your name?"
@@ -85,10 +86,10 @@ function App() {
 					/>
 				)}
 				<div className="App tap-highlight-none bg-white lg:relative min-h-[100vh] lg:max-w-sm lg:mx-auto lg:border lg:overflow-y-scroll lg:shadow-lg">
-					<NotificationBar
+					{/* <NotificationBar
 						queue={queue}
 						popFromQueue={popFromQueue}
-					/>
+					/> */}
 					<Routes>
 						{/* Main route */}
 						{routes.map((route, index) => {
