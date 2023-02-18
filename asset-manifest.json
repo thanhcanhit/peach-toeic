@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/peach-toeic/static/css/main.f46d46ab.css",
-    "main.js": "/peach-toeic/static/js/main.4ce34dd6.js",
+    "main.js": "/peach-toeic/static/js/main.6f0b0c8e.js",
     "static/js/845.c4ab2b35.chunk.js": "/peach-toeic/static/js/845.c4ab2b35.chunk.js",
     "static/js/787.038f8cec.chunk.js": "/peach-toeic/static/js/787.038f8cec.chunk.js",
     "static/media/good_job.gif": "/peach-toeic/static/media/good_job.099467265592fb3f2576.gif",
@@ -18,12 +18,12 @@
     "static/media/bubble-pop.mp3": "/peach-toeic/static/media/bubble-pop.b216cda3690cc53b924a.mp3",
     "index.html": "/peach-toeic/index.html",
     "main.f46d46ab.css.map": "/peach-toeic/static/css/main.f46d46ab.css.map",
-    "main.4ce34dd6.js.map": "/peach-toeic/static/js/main.4ce34dd6.js.map",
+    "main.6f0b0c8e.js.map": "/peach-toeic/static/js/main.6f0b0c8e.js.map",
     "845.c4ab2b35.chunk.js.map": "/peach-toeic/static/js/845.c4ab2b35.chunk.js.map",
     "787.038f8cec.chunk.js.map": "/peach-toeic/static/js/787.038f8cec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f46d46ab.css",
-    "static/js/main.4ce34dd6.js"
+    "static/js/main.6f0b0c8e.js"
   ]
 }
