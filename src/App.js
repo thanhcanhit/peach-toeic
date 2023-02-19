@@ -78,7 +78,7 @@ function App() {
 	return (
 		<HashRouter>
 			<NotificationContext.Provider value={addToQueue}>
-				{/* <Loading time={2500} /> */}
+				<Loading time={2500} />
 				{localData.name === null && (
 					<UserForm
 						message="When we first met, what's your name?"
