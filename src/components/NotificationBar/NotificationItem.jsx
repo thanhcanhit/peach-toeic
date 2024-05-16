@@ -1,8 +1,5 @@
 import React, {
-	useCallback,
-	useEffect,
-	useLayoutEffect,
-	useState,
+	useEffect
 } from "react";
 import {
 	IoInformationCircle,
@@ -11,7 +8,6 @@ import {
 	IoCheckmarkCircle,
 	IoClose,
 } from "react-icons/io5";
-import { useRef } from "react";
 import useSound from "use-sound";
 import notificationSFX from "../../assets/sfx/notice.mp3";
 import { useMemo } from "react";

@@ -6,6 +6,7 @@ import {
 	Game,
 	GameTopic,
 	Learn,
+	GameSaved,
 } from "../pages";
 
 const routes = [
@@ -29,12 +30,13 @@ const routes = [
 		path: "/progress",
 		component: Progress,
 	},
+	{ path: "/game-topic", component: GameTopic, layout: null },
+	{ path: "/game-saved", component: GameSaved, layout: null },
 	{
 		path: "/game",
 		component: Game,
 		layout: null,
 	},
-	{ path: "/game-topic", component: GameTopic, layout: null },
 	{
 		path: "/learn",
 		component: Learn,

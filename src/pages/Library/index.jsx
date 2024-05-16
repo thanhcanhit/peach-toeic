@@ -15,6 +15,7 @@ import DetailCard from "../../components/DetailCard";
 import bubblePopSFX from "../../assets/sfx/bubble-pop.mp3";
 import paperSFX from "../../assets/sfx/page-flip.mp3";
 import { NotificationContext } from "../../App";
+import { Link } from "react-router-dom";
 
 export default function Library() {
 	// Sounds
@@ -44,12 +45,20 @@ export default function Library() {
 		setLocalLibraryData(library);
 	}, [library, setLocalLibraryData]);
 
-	// Notification 
+	// Notification
 	const addNotification = useContext(NotificationContext);
 
 	return (
 		<div className="px-4 pt-8 pb-24">
 			<h2 className="mb-4 text-center title">Saved Vocabulary</h2>
+
+			{library.length > 0 && (
+				<div className="flex justify-center">
+					<button className="px-4 py-2 mb-8 font-semibold text-white rounded-full shadow bg-primary text-12">
+						<Link to="/game-saved">Practice saved vocabulary</Link>
+					</button>
+				</div>
+			)}
 			<ul className="grid grid-cols-1 gap-2">
 				{library.map((id, index) => (
 					<li
@@ -65,7 +74,10 @@ export default function Library() {
 							name={vocaList[id].name}
 							removeItem={() => {
 								removeItem(id);
-								addNotification("info", `Removed ${vocaList[id].name} from Library`);
+								addNotification(
+									"info",
+									`Removed ${vocaList[id].name} from Library`
+								);
 							}}
 							activeIndex={activeIndex}
 						>
@@ -76,7 +88,9 @@ export default function Library() {
 				{library.length === 0 && (
 					<div className="mt-4 text-center opacity-60">
 						<p>You have not saved any words yet.</p>
-						<p className="italic text-14">Try adding a few words to query them faster!</p>
+						<p className="italic text-14">
+							Try adding a few words to query them faster!
+						</p>
 					</div>
 				)}
 			</ul>
