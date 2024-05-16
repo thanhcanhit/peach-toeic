@@ -21,14 +21,12 @@ export default function GameSaved() {
 	let vocabularyContextData = useContext(VocabularyContext);
 
 	const [getSavedList] = useLibrary();
+	const savedList = getSavedList();
 	const vocabularyData = useMemo(() => {
-		const savedList = getSavedList();
-		const result = [];
-		for (let i = 0; i < savedList.length; i++)
-			result.push(vocabularyContextData[savedList[i]]);
-		return result;
-	}, [vocabularyContextData, getSavedList]);
+		return savedList.map((index) => vocabularyContextData[index]);
+	}, [vocabularyContextData, savedList]);
 
+	if (vocabularyData.length === 0) return <h1>No vocabulary saved</h1>;
 	return (
 		<MultipleChoice
 			numberOfQuestions={vocabularyData.length}

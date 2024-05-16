@@ -52,11 +52,17 @@ export default function Library() {
 		<div className="px-4 pt-8 pb-24">
 			<h2 className="mb-4 text-center title">Saved Vocabulary</h2>
 
-			{library.length > 0 && (
+			{library.length >= 4 ? (
 				<div className="flex justify-center">
 					<button className="px-4 py-2 mb-8 font-semibold text-white rounded-full shadow bg-primary text-12">
 						<Link to="/game-saved">Practice saved vocabulary</Link>
 					</button>
+				</div>
+			) : (
+				<div>
+					<p className="mx-auto text-sm italic text-center text-gray-400">
+						To practice you must have least 4 item
+					</p>
 				</div>
 			)}
 			<ul className="grid grid-cols-1 gap-2">
